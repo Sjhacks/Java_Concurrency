@@ -1,0 +1,7 @@
+Question2:
+Nothing in my program was explicitly synchronized other than the counter for the number
+of blank pixels remaining in image. That said, the program experienced major slowdown when running
+multiple threads, most likely due to blocking on methods like setRgb. It is noticeable though that
+after a certain number of threads, the slowdown stops increasing. This is probably due to architecture, I
+ran this program on a quad core machine, so eventually, the number of threads is higher than can be run simultaneously
+in an efficient way and the program stops slowing down.
