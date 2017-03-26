@@ -1,0 +1,2 @@
+Don't really have enough time to test out the performance but it works for all thread numbers I've tried.
+Execution time increases per thread count as expected.

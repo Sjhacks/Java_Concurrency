@@ -1,0 +1,12 @@
+q1:
+For this program, I used two 2 dimensional arrays of atomic values of the same size (AtomicInteger and AtomicBoolean). 
+The AtomicBoolean array serves to act as a lock of sorts for each element of the AtomicInteger array, which represents the
+board that the rooks are occupying by assigning each rook an id, and unoccupied board spots a 0. Each thread keeps track
+of its rooks position on the board and its id.
+
+When a thread wants to move its rook, it must atomically set the corresponding positions
+invovled in the move to true, while checking that the lock is indeed false (by using compareAndSet). Once the pseudolock is
+acquired, the thread can update the position of its rook. If it replaces another rook in the process, the next time that rook 
+looks to move to a different position, it while terminate upon seeing that another rook has removed it. If the lock is in use by 
+another thread, the current thread will instead choose another move and unlock any positions it may have locked, therefore 
+avoiding spinning and deadlock.
